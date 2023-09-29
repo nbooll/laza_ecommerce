@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const SplashScreen(),
+      home: const Screen10(),
       scrollBehavior: MyCustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
     );
@@ -1226,6 +1226,8 @@ class Screen10 extends StatefulWidget {
   State<Screen10> createState() => _Screen10State();
 }
 
+var x = 'images/6.png';
+
 class _Screen10State extends State<Screen10> {
   @override
   Widget build(BuildContext context) {
@@ -1241,8 +1243,11 @@ class _Screen10State extends State<Screen10> {
                   color: const Color.fromARGB(255, 242, 242, 242),
                   child: Stack(
                     children: [
-                      Center(
-                        child: Image.asset('images/6.png'),
+                      Hero(
+                        tag: 'xxx',
+                        child: Center(
+                          child: Image.asset(x),
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(15),
@@ -1352,74 +1357,162 @@ class _Screen10State extends State<Screen10> {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: Row(
-                          children: [
-                            Image.asset('images/11.png'),
-                            const Padding(padding: EdgeInsets.all(5)),
-                          ],
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              x = 'images/6.png';
+                            });
+                          },
+                          child: Row(
+                            children: [
+                              Image.asset('images/66.png'),
+                              const Padding(padding: EdgeInsets.all(5)),
+                            ],
+                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: Row(
-                          children: [
-                            Image.asset('images/12.png'),
-                            const Padding(padding: EdgeInsets.all(5)),
-                          ],
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              x = 'images/11-1.png';
+                            });
+                          },
+                          child: Row(
+                            children: [
+                              Image.asset('images/11.png'),
+                              const Padding(padding: EdgeInsets.all(5)),
+                            ],
+                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: Row(
-                          children: [
-                            Image.asset('images/13.png'),
-                            const Padding(padding: EdgeInsets.all(5)),
-                          ],
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              x = 'images/12-1.png';
+                            });
+                          },
+                          child: Row(
+                            children: [
+                              Image.asset('images/12.png'),
+                              const Padding(padding: EdgeInsets.all(5)),
+                            ],
+                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: Row(
-                          children: [
-                            Image.asset('images/14.png'),
-                            const Padding(padding: EdgeInsets.all(5)),
-                          ],
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              x = 'images/13-1.png';
+                            });
+                          },
+                          child: Row(
+                            children: [
+                              Image.asset('images/13.png'),
+                              const Padding(padding: EdgeInsets.all(5)),
+                            ],
+                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: Row(
-                          children: [
-                            Image.asset('images/11.png'),
-                            const Padding(padding: EdgeInsets.all(5)),
-                          ],
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              x = 'images/14-1.png';
+                            });
+                          },
+                          child: Row(
+                            children: [
+                              Image.asset('images/14.png'),
+                              const Padding(padding: EdgeInsets.all(5)),
+                            ],
+                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: Row(
-                          children: [
-                            Image.asset('images/12.png'),
-                            const Padding(padding: EdgeInsets.all(5)),
-                          ],
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              x = 'images/6.png';
+                            });
+                          },
+                          child: Row(
+                            children: [
+                              Image.asset('images/66.png'),
+                              const Padding(padding: EdgeInsets.all(5)),
+                            ],
+                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: Row(
-                          children: [
-                            Image.asset('images/13.png'),
-                            const Padding(padding: EdgeInsets.all(5)),
-                          ],
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              x = 'images/11-1.png';
+                            });
+                          },
+                          child: Row(
+                            children: [
+                              Image.asset('images/11.png'),
+                              const Padding(padding: EdgeInsets.all(5)),
+                            ],
+                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: Row(
-                          children: [
-                            Image.asset('images/14.png'),
-                            const Padding(padding: EdgeInsets.all(5)),
-                          ],
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              x = 'images/12-1.png';
+                            });
+                          },
+                          child: Row(
+                            children: [
+                              Image.asset('images/12.png'),
+                              const Padding(padding: EdgeInsets.all(5)),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              x = 'images/13-1.png';
+                            });
+                          },
+                          child: Row(
+                            children: [
+                              Image.asset('images/13.png'),
+                              const Padding(padding: EdgeInsets.all(5)),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              x = 'images/13-1.png';
+                            });
+                          },
+                          child: Row(
+                            children: [
+                              Image.asset('images/13.png'),
+                              const Padding(padding: EdgeInsets.all(5)),
+                            ],
+                          ),
                         ),
                       ),
                     ],
