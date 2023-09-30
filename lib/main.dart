@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const Screen10(),
+      home: const SplashScreen(),
       scrollBehavior: MyCustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
     );
@@ -238,12 +238,55 @@ class Register extends StatefulWidget {
   State<Register> createState() => _RegisterState();
 }
 
+enum Strength {
+  empty('Empty', 0 / 4, Colors.transparent),
+  weak('Weak', 1 / 4, Colors.red),
+  medium('Medium', 2 / 4, Colors.orange),
+  strong('Strong', 3 / 4, Colors.blue),
+  veryStrong('Very Strong', 4 / 4, Colors.green),
+  ;
+
+  final String text;
+  final double value;
+  final Color color;
+
+  const Strength(this.text, this.value, this.color);
+}
+
 bool _switchValue = true;
 
 class _RegisterState extends State<Register> {
   bool isPressed = true;
   Map userData = {};
   final _formkey = GlobalKey<FormState>();
+
+  Strength _strength = Strength.empty;
+
+  void _updatePasswordStrength(String value) {
+    setState(() {
+      _strength = _calculatePasswordStrength(value);
+    });
+  }
+
+  Strength _calculatePasswordStrength(String value) {
+    if (value.isEmpty) {
+      return Strength.empty;
+    } else if (value.contains(RegExp(
+        r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"))) {
+      return Strength.veryStrong;
+    } else if (value.contains(
+            RegExp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$")) ||
+        value.contains(RegExp(
+            r"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"))) {
+      return Strength.strong;
+    } else if (value
+        .contains(RegExp(r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"))) {
+      return Strength.medium;
+    } else {
+      return Strength.weak;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -288,6 +331,7 @@ class _RegisterState extends State<Register> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: TextFormField(
+                onChanged: (value) => _updatePasswordStrength(value),
                 validator: MultiValidator([
                   RequiredValidator(errorText: 'Enter Password'),
                   PatternValidator(r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$",
@@ -296,6 +340,13 @@ class _RegisterState extends State<Register> {
                 ]),
                 obscureText: isPressed,
                 decoration: InputDecoration(
+                  suffix: Text(
+                    _strength.text,
+                    style: TextStyle(
+                      color: _strength.color,
+                      fontSize: 20,
+                    ),
+                  ),
                   suffixIcon: IconButton(
                     onPressed: () {
                       setState(() {
