@@ -4,9 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'app/get_it.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
+  await setup();
 }
 
 class MyApp extends StatelessWidget {
@@ -15,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const SplashScreen(),
+      home: const Reviews(),
       scrollBehavior: MyCustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
     );
@@ -1899,6 +1902,423 @@ class _Screen10State extends State<Screen10> {
             child: const Center(
               child: Text(
                 'Add to Cart',
+                style: TextStyle(color: Colors.white, fontSize: 22),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+TextEditingController dataname = TextEditingController();
+TextEditingController datades = TextEditingController();
+bool dess = false;
+
+class Reviews extends StatefulWidget {
+  const Reviews({super.key});
+
+  @override
+  State<Reviews> createState() => _ReviewsState();
+}
+
+class _ReviewsState extends State<Reviews> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Color(0xFFFEFEFE),
+        appBar: AppBar(
+          toolbarHeight: 100,
+          title: Center(
+              child: Text(
+            "Reviews",
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700),
+          )),
+          backgroundColor: Color(0xFFFEFEFE),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(13.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset('images/rate2.png', width: 150),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AddReview()),
+                        );
+                      },
+                      child: Container(
+                        height: 50,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFF7043),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.edit_square,
+                                color: Colors.white,
+                              ),
+                              Text(
+                                'Add Review',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 16),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Visibility(
+                visible: dess,
+                child: ListTile(
+                  leading: CircleAvatar(child: Icon(Icons.account_box)),
+                  title: Text(
+                    getIt.get<SharedPreferences>().getString('pure_data') ??
+                        '  ',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xFF1D1E20),
+                    ),
+                  ),
+                  subtitle: const Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.access_time_outlined,
+                        size: 18,
+                      ),
+                      Padding(padding: EdgeInsets.all(5)),
+                      Text('13 Sep, 2020')
+                    ],
+                  ),
+                  trailing: Image.asset('images/rate.png'),
+                ),
+              ),
+              Visibility(
+                visible: dess,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(30, 0, 25, 20),
+                    child: Text(
+                      getIt.get<SharedPreferences>().getString('data_des') ??
+                          'hello',
+                      style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF8F959E)),
+                    ),
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: CircleAvatar(
+                  child: Image.asset('images/15.png'),
+                ),
+                title: const Text(
+                  "Jenny Wilson",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xFF1D1E20),
+                  ),
+                ),
+                subtitle: const Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.access_time_outlined,
+                      size: 18,
+                    ),
+                    Padding(padding: EdgeInsets.all(5)),
+                    Text('13 Sep, 2020')
+                  ],
+                ),
+                trailing: Image.asset('images/rate.png'),
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(30, 0, 25, 20),
+                  child: Text(
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xFF8F959E)),
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: CircleAvatar(
+                  child: Image.asset('images/22.png'),
+                ),
+                title: const Text(
+                  "Ronald Richards",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xFF1D1E20),
+                  ),
+                ),
+                subtitle: const Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.access_time_outlined,
+                      size: 18,
+                    ),
+                    Padding(padding: EdgeInsets.all(5)),
+                    Text('13 Sep, 2020')
+                  ],
+                ),
+                trailing: Image.asset('images/rate.png'),
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(30, 0, 25, 20),
+                  child: Text(
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xFF8F959E)),
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: CircleAvatar(
+                  child: Image.asset('images/21.png'),
+                ),
+                title: const Text(
+                  "Guy Hawkins",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xFF1D1E20),
+                  ),
+                ),
+                subtitle: const Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.access_time_outlined,
+                      size: 18,
+                    ),
+                    Padding(padding: EdgeInsets.all(5)),
+                    Text('13 Sep, 2020')
+                  ],
+                ),
+                trailing: Image.asset('images/rate.png'),
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(30, 0, 25, 20),
+                  child: Text(
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xFF8F959E)),
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: CircleAvatar(
+                  child: Image.asset('images/20.png'),
+                ),
+                title: const Text(
+                  "Savannah Nguyen",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xFF1D1E20),
+                  ),
+                ),
+                subtitle: const Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.access_time_outlined,
+                      size: 18,
+                    ),
+                    Padding(padding: EdgeInsets.all(5)),
+                    Text('13 Sep, 2020')
+                  ],
+                ),
+                trailing: Image.asset('images/rate.png'),
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(30, 0, 25, 20),
+                  child: Text(
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xFF8F959E)),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
+  }
+}
+
+class AddReview extends StatefulWidget {
+  const AddReview({super.key});
+
+  @override
+  State<AddReview> createState() => _AddReviewState();
+}
+
+class _AddReviewState extends State<AddReview> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xFFFEFEFE),
+      appBar: AppBar(
+        toolbarHeight: 100,
+        title: Center(
+            child: Text(
+          "Add Review",
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700),
+        )),
+        backgroundColor: Color(0xFFFEFEFE),
+        iconTheme: CupertinoIconThemeData(
+          color: Colors.black,
+        ),
+      ),
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(25, 25, 25, 0),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Name",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 18),
+              ),
+            ),
+            Padding(padding: EdgeInsets.all(5)),
+            TextField(
+              controller: dataname,
+              decoration: InputDecoration(
+                fillColor: Color(0xFFF5F6FA),
+                filled: true,
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none),
+                hintText: 'Type your name',
+                errorStyle: TextStyle(fontSize: 14.0),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: EdgeInsets.only(top: 25),
+                child: Text(
+                  "How was your experience ?",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 18),
+                ),
+              ),
+            ),
+            Padding(padding: EdgeInsets.all(5)),
+            TextField(
+              controller: datades,
+              minLines: 6,
+              keyboardType: TextInputType.multiline,
+              maxLines: 10,
+              decoration: InputDecoration(
+                fillColor: Color(0xFFF5F6FA),
+                filled: true,
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none),
+                hintText: 'Describe your experience?',
+                errorStyle: TextStyle(fontSize: 14.0),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+        child: InkWell(
+          onTap: () => showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: Center(
+                  child: Text(
+                'Thank you for your review',
+                style: TextStyle(fontWeight: FontWeight.w700),
+              )),
+              content: Image.asset('images/thank-you.gif'),
+              actions: <Widget>[
+                Center(
+                  child: TextButton(
+                    onPressed: () {
+                      dess = true;
+                      setState(() {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Reviews()),
+                        );
+                      });
+                      getIt
+                          .get<SharedPreferences>()
+                          .setString('pure_data', dataname.text);
+
+                      getIt
+                          .get<SharedPreferences>()
+                          .setString('data_des', datades.text);
+                    },
+                    child: const Text(
+                      'Next',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF9775FA)),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          child: Container(
+            decoration: const BoxDecoration(color: Color(0xFF9775FA)),
+            width: MediaQuery.of(context).size.width,
+            height: 75,
+            child: const Center(
+              child: Text(
+                'Submit Review',
                 style: TextStyle(color: Colors.white, fontSize: 22),
               ),
             ),
